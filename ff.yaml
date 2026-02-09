@@ -1,0 +1,17 @@
+# File: docker-compose.yml
+services:
+  webapp:
+    image: my-app:latest
+    environment:
+      # Finding: Hardcoded credentials in container environment
+      - SENDGRID_API_KEY=SG.V1234567890abcdefghij.1234567890abcdefghijklmnopqrstuvwxyz
+      - GF_SECURITY_ADMIN_PASSWORD=admin_secret_pass
+    ports:
+      - "80:80"
+  
+  db:
+    image: mysql:8.0
+    # Finding: Default root password exposure
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: "root_password_123"
