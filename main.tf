@@ -32,7 +32,7 @@ resource "aws_security_group" "bad_sg" {
 resource "aws_ebs_volume" "unencrypted_volume" {
   availability_zone = "us-east-1a"
   size              = 40
-  encrypted         = false # Finding: Data at rest not encrypted
+  encrypted         = true
 }
 
 # 4. IAM Policy with Wildcard Permissions
